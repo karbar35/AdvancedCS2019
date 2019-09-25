@@ -181,8 +181,6 @@ public class BinaryConversion {
 				}
 
 				// flips all the digits of the binary version of input
-				// NOTE: everything below this point has been coded only for
-				// resultArray, not decimals array
 				for (int i = 0; i < resultArray.length; i++) {
 					resultArray[i] = -(resultArray[i]) + 1;
 				}
