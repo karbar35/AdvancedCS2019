@@ -12,7 +12,7 @@ public class BinaryConversion {
 			try {
 				Scanner s = new Scanner(System.in);
 				// long temp = s.nextLong();
-				double input = s.nextDouble();
+				String input = s.nextLine();
 				System.out.println("You chose " + input);
 				flag = true;
 				// System.out.println(input + " in binary is: " +
@@ -24,32 +24,42 @@ public class BinaryConversion {
 		}
 	}
 
-	public static void makeBinary(double input) {
+	public static void makeBinary(String finput) {
 		int bitSize = 0;
-
+		boolean isADecimal = false;
+		double dinput = 0;
+		long linput = 0;
 		// check for size of number in bytes.
-		if (input <= 255 && input >= -256) {
+		if(finput.contains(".")) {
+			isADecimal = true;
+			dinput = Double.parseDouble(finput);
+		} else {
+			linput = Long.parseLong(finput);
+		}
+		
+		if (linput <= 255 && linput >= -256) {
 			bitSize = 8;
-		} else if (input <= 65535 && input >= -65536) {
+		} else if (linput <= 65535 && linput >= -65536) {
 			bitSize = 16;
-		} else if (input <= Math.pow(2, 32) - 1 && input >= -Math.pow(2, 32)) {
+		} else if (linput <= Math.pow(2, 32) - 1 && linput >= -Math.pow(2, 32)) {
 			bitSize = 32;
-		} else if (input <= Math.pow(2, 63) - 1 && input >= -Math.pow(2, 63)) {
+		} else if (linput <= Math.pow(2, 63) - 1 && linput >= -Math.pow(2, 63)) {
 			bitSize = 64;
 		} else {
 			System.out.println("That number is too big.");
+			return;
 		}
 
 		int[] resultArray = new int[bitSize];
 		int[] decimals = new int[100];
-		if (input >= 0) { // positive inputs
+		if (linput >= 0 || dinput >= 0) { // positive inputs
 			int sign = 0;
-			if ((int) input == input) { // if there is no decimal
+			if (!isADecimal) { // if there is no decimal
 
 				for (int i = 0; i < bitSize; i++) {
-					if (input >= Math.pow(2, (bitSize - 1) - i)) {
+					if (linput >= Math.pow(2, (bitSize - 1) - i)) {
 						resultArray[i] = 1;
-						input = input - Math.pow(2, (bitSize - 1) - i);
+						linput = (long) (linput - Math.pow(2, (bitSize - 1) - i));
 					}
 				}
 
@@ -58,12 +68,12 @@ public class BinaryConversion {
 				}
 				System.out.println("");
 			} else { // if there is a decimal portion
-				double rightDec = input - (int) input;
+				double rightDec = dinput - (int) dinput;
 				// converting the left of the decimal
 				for (int i = 0; i < bitSize; i++) {
-					if (input >= Math.pow(2, (bitSize - 1) - i)) {
+					if (dinput >= Math.pow(2, (bitSize - 1) - i)) {
 						resultArray[i] = 1;
-						input = input - Math.pow(2, (bitSize - 1) - i);
+						dinput = dinput - Math.pow(2, (bitSize - 1) - i);
 					}
 				}
 
@@ -169,14 +179,16 @@ public class BinaryConversion {
 			
 			
 		} else { // negative inputs
-					// turns positive version of input into binary
-			input = input * -1;
-			if ((int) input == input) { // if there is no decimal
-
+					
+			linput = linput * -1;
+			if (!isADecimal) { // if there is no decimal
+				// turns positive version of input into binary
+				// 2's Complement Conversion:
+				
 				for (int i = 0; i < bitSize; i++) {
-					if (input >= Math.pow(2, (bitSize - 1) - i)) {
+					if (linput >= Math.pow(2, (bitSize - 1) - i)) {
 						resultArray[i] = 1;
-						input = input - Math.pow(2, (bitSize - 1) - i);
+						linput = (long) (linput - Math.pow(2, (bitSize - 1) - i));
 					}
 				}
 
@@ -201,12 +213,12 @@ public class BinaryConversion {
 				System.out.println("");
 			} else { // if there is a decimal portion
 				int sign = 1;
-				double rightDec = input - (int) input;
+				double rightDec = dinput - (int) dinput;
 				// converting the left of the decimal
 				for (int i = 0; i < bitSize; i++) {
-					if (input >= Math.pow(2, (bitSize - 1) - i)) {
+					if (dinput >= Math.pow(2, (bitSize - 1) - i)) {
 						resultArray[i] = 1;
-						input = input - Math.pow(2, (bitSize - 1) - i);
+						dinput = dinput - Math.pow(2, (bitSize - 1) - i);
 					}
 				}
 

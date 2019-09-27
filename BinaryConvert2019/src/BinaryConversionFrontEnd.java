@@ -64,7 +64,7 @@ public class BinaryConversionFrontEnd {
                 if(dataType == INT_TYPE) {
                     String binInt = "";
                     try {
-                        long x = Long.parseLong(nextNumIn);
+                        String x = nextNumIn;
                         //This is my conversion method...
                         BinaryConversion.makeBinary(x);
                         
@@ -75,6 +75,9 @@ public class BinaryConversionFrontEnd {
                  
                 } else if(dataType == FLOAT_TYPE) {
                     // Create the 32 bit float method....
+                	String x = nextNumIn;
+                    BinaryConversion.makeBinary(x);
+
                 } else {
                     // Strings??
                 }
@@ -104,12 +107,12 @@ public class BinaryConversionFrontEnd {
     }
     
     
-    public static void binConvertInt(long num) {
+    /* public static void binConvertInt(long num) {
        //This is your code for binary byte, short, int and long conversion
         String binString = "";
         //Your code here....
         BinaryConversion.makeBinary(num);
-    }
+    } */
    
 
 }
