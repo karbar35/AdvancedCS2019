@@ -34,7 +34,7 @@ public class BinaryConversionFrontEnd {
         boolean allGood = false;
         
         try {
-          s = new Scanner(new File("src/TestFile2"));
+          s = new Scanner(new File("src/TestFile3"));
           //System.out.println("It's open");
           allGood = true;
         } catch( Exception e ) {
@@ -48,7 +48,7 @@ public class BinaryConversionFrontEnd {
                 
                 if(itsNotANumber(nextNumIn)) {
                     //check for bad input
-                    System.out.println(">>>" + nextNumIn + " is bad input");
+                    System.out.println(">>>" + nextNumIn + " is a bad input");
                     dataType = STRING_TYPE;
                 } else if (isADecimal(nextNumIn)) {
                     //check for a decimal
@@ -66,7 +66,7 @@ public class BinaryConversionFrontEnd {
                     try {
                         String x = nextNumIn;
                         //This is my conversion method...
-                        BinaryConversion.makeBinary(x);
+                        BinaryConversion.makeBinary(x, INT_TYPE);
                         
                     } catch (Exception e) {
                         System.out.println(">>>" + nextNumIn + " -- Number is too Large...");    
@@ -76,16 +76,18 @@ public class BinaryConversionFrontEnd {
                 } else if(dataType == FLOAT_TYPE) {
                     // Create the 32 bit float method....
                 	String x = nextNumIn;
-                    BinaryConversion.makeBinary(x);
+                    BinaryConversion.makeBinary(x, FLOAT_TYPE);
 
                 } else {
                     // Strings??
+                	
                 }
             }
             s.close();
         }
     }
     
+    // returns if nextNumIn is not a number
     public static boolean itsNotANumber(String nextNumIn) {
         boolean itsNotANumber = false;
         String nonNums = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()_+= {[}]|\\:;\"'<,>?/";
@@ -98,6 +100,7 @@ public class BinaryConversionFrontEnd {
         return itsNotANumber;
     }
     
+    // returns if nextNumIn is a decimal
     public static boolean isADecimal(String nextNumIn) {
         boolean itsADecimal = false;
         if(nextNumIn.contains(".")) {
