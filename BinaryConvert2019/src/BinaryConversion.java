@@ -15,7 +15,8 @@ public class BinaryConversion {
 		// TODO Auto-generated method stub
 		boolean flag = false;
 		System.out.println("Enter a number value. For negative values, use -");
-		while (flag == false) {
+		makeBinary("3.14159265359", BinaryConversionFrontEnd.FLOAT_TYPE);
+		/* while (flag == false) {
 			try {
 				Scanner s = new Scanner(System.in);
 				// long temp = s.nextLong();
@@ -23,12 +24,11 @@ public class BinaryConversion {
 				System.out.println("You chose " + input);
 				flag = true;
 				// System.out.println(input + " in binary is: " +
-				// makeBinary(input));
 				// makeBinary(input);
 			} catch (InputMismatchException e) {
 				System.out.println("Please enter a NUMBER with no other characters.");
 			}
-		}
+		} */
 	}
 
 	public static void makeBinary(String sinput, int type) {
@@ -49,8 +49,9 @@ public class BinaryConversion {
 			} else if (input <= Math.pow(2, 63) - 1 && input >= -Math.pow(2, 63)) {
 				bitSize = LONG;
 			} else {
-				System.out.println("That number is too big.");
-				return;
+				/* System.out.println("That number is too big.");
+				return; */
+				bitSize = 128;
 			}
 			int[] leftDec = new int[bitSize];
 			int[] rightDec = new int[100];
@@ -77,7 +78,11 @@ public class BinaryConversion {
 					break;
 				}
 			}
-			input = -Float.parseFloat(sinput) + (long)Float.parseFloat(sinput); /* cuts off integer portion of input */
+			if(sign == NEGATIVE) {
+				input = -Float.parseFloat(sinput) + (long)Float.parseFloat(sinput); /* cuts off integer portion of input */
+			} else {
+				input = Float.parseFloat(sinput) - (long)Float.parseFloat(sinput); /* cuts off integer portion of input */
+			}
 			// int rightDigits = 23 - leftDigits;
 			for(int i = 0; i < rightDec.length; i++) {
 				if(input >= Math.pow(2, -(i+1))) {
@@ -121,11 +126,11 @@ public class BinaryConversion {
 				System.out.print(e);
 			}
 			int toMantissa = 0;
-			for(int i = (bitSize-leftDigits); i < bitSize; i++) {
+			for(int i = (bitSize-leftDigits)+1; i < bitSize; i++) {
 				System.out.print(leftDec[i]);
 				toMantissa++;
 			}
-			for(int i = toMantissa; i < 23; i++) {
+			for(int i = 0; i < 24-leftDigits; i++) {
 				System.out.print(rightDec[i]);
 			}
 			System.out.println("");
