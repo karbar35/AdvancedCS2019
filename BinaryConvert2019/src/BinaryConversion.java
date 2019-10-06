@@ -15,7 +15,7 @@ public class BinaryConversion {
 		// TODO Auto-generated method stub
 		boolean flag = false;
 		System.out.println("Enter a number value. For negative values, use -");
-		makeBinary("3.14159265359", BinaryConversionFrontEnd.FLOAT_TYPE);
+		makeBinary("9223372036854775807", BinaryConversionFrontEnd.INT_TYPE);
 		/* while (flag == false) {
 			try {
 				Scanner s = new Scanner(System.in);
@@ -37,7 +37,7 @@ public class BinaryConversion {
 		if(type == BinaryConversionFrontEnd.FLOAT_TYPE) /* the input is a decimal, so use IEEE */{
 			float input = Float.parseFloat(sinput); // input will be used to refer to the user input from here on
 			if(input == 0) {
-				System.out.println(0);
+				System.out.println("0 00000000 00000000000000000000000");
 				return;
 			}
 			if (input <= 255 && input >= -256) {
@@ -72,8 +72,11 @@ public class BinaryConversion {
 			// finds number of binary digits on left
 			int leftDigits = leftDec.length;
 			for(int i = 0; i < leftDec.length; i++) {
+				//System.out.print(leftDec[i]);
+				//System.out.println("");
 				if(leftDec[i] == 0) {
 					leftDigits--;
+					//System.out.print(leftDigits + " ");
 				} else {
 					break;
 				}
@@ -98,15 +101,15 @@ public class BinaryConversion {
 			if(Arrays.toString(leftDec).contains("1")) {
 				exponent = 127 + leftDigits - 1;
 			} else {
-				int count = 0;
+				int counter = 0;
 				for(int i = 0; i < rightDec.length; i++) {
 					if(rightDec[i] == 0) {
-						count++;
+						counter++;
 					} else {
 						break;
 					}
 				}
-				exponent = 127 - count - 1;
+				exponent = 127 - counter - 1;
 			}
 			int [] exponentArray = new int[8];
 			for (int i = 0; i < 8; i++) {
@@ -121,19 +124,43 @@ public class BinaryConversion {
 			 */
 			// System.out.println(leftDigits + " " + rightDigits);
 			System.out.println(sinput + " in Binary IEEE 754 Format is:");
-			System.out.print(sign);
+			System.out.print(sign + " ");
 			for(int e : exponentArray) {
 				System.out.print(e);
 			}
-			int toMantissa = 0;
-			for(int i = (bitSize-leftDigits)+1; i < bitSize; i++) {
-				System.out.print(leftDec[i]);
-				toMantissa++;
+			System.out.print(" ");
+			// int toMantissa = 0;
+			/*
+			 * Rewrite the code below to correctly print the digits of leftDec and the rightDec until 23 digits have been printed.
+			 */
+			int count = 0;
+			for(int i = (leftDec.length-leftDigits+1); i < leftDec.length; i++) {
+				if(count < 23) {
+					System.out.print(leftDec[i]);
+					count++;
+				} else {
+					break;
+				}
 			}
-			for(int i = 0; i < 24-leftDigits; i++) {
-				System.out.print(rightDec[i]);
+			int rightStart = 0;
+			if(leftDigits == 0) {
+				for(int i = 0; i < rightDec.length; i++) {
+					if(rightDec[i] == 0) {
+						rightStart++;
+					} else {
+						break;
+					}
+				}
 			}
-			System.out.println("");
+			for(int i = rightStart+1; i < rightDec.length; i++) {
+				if(count < 23) {
+					System.out.print(rightDec[i]);
+					count++;
+				} else {
+					break;
+				}
+			}
+			System.out.println(""); 
 			
 		} else /* the input is not a decimal, so use 2s complement/normal binary bytes */{
 			
@@ -161,12 +188,11 @@ public class BinaryConversion {
 			
 			if(sign == POSITIVE) {
 				for (int i = 0; i < bitSize; i++) {
+					System.out.println(input);
 					if (input >= Math.pow(2, (bitSize - 1) - i)) {
 						resultArray[i] = 1;
 						input = (long) (input - Math.pow(2, (bitSize - 1) - i));
-					} else {
-						resultArray[i] = 0;
-					}
+					} 
 				}
 				
 				System.out.println(sinput + " in binary is:");
