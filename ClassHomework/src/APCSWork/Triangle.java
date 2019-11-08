@@ -10,33 +10,24 @@ public class Triangle extends Polygon{
 		super(3, coors);
 	}
 
-	public Triangle(Point a, Point b, Point c) {
-		super(3, new ArrayList<Point>());
-		super.addOneCoordinate(a.x, a.y);
-		super.addOneCoordinate(b.x, b.y);
-		super.addOneCoordinate(c.x, c.y);
-		
-	}
 	
-	@Override
 	public double area() {
 		// TODO Auto-generated method stub
 		double base = 0; 
-		return Math.abs((coordinates.get(0).x * 
-				(coordinates.get(1).y - coordinates.get(2).y) 
-				+ coordinates.get(1).x * (coordinates.get(2).y - 
-				coordinates.get(0).y) + coordinates.get(2).x * 
-				(coordinates.get(0).y - coordinates.get(1).y))/2);
+		Point a = coordinates.get(0);
+		Point b = coordinates.get(1);
+		Point c = coordinates.get(2);
+
+		return Math.abs(((a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y))) / 2);
 	}
 
 	@Override
 	public boolean isEquilateral() {
 		// TODO Auto-generated method stub
-		
-		return (distanceBetween(coordinates.get(0), coordinates.get(1)) == 
-				distanceBetween(coordinates.get(0), coordinates.get(2))
-				&& distanceBetween(coordinates.get(1), coordinates.get(2)) == 
-				distanceBetween(coordinates.get(0), coordinates.get(1)));
+		Point a = coordinates.get(0);
+		Point b = coordinates.get(1);
+		Point c = coordinates.get(2);
+		return (distanceBetween(a,b) == distanceBetween(a,c) && distanceBetween(b,c)==distanceBetween(a,c));
 	}
 	
 	private double distanceBetween(Point a, Point b) {
@@ -60,7 +51,7 @@ public class Triangle extends Polygon{
 		coors.add(new Point(0,0));
 		*/
 		
-		Polygon t2 = new Triangle(new Point(27,1), new Point(3,0), new Point(0,0));
+		Polygon t2 = new Triangle();
 		System.out.println(t2.area());
 		System.out.println(t2.isEquilateral());
 
