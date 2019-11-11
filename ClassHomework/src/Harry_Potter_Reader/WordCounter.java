@@ -10,7 +10,7 @@ public class WordCounter {
 	public static void main(String[] args) {
 		try {
 			
-			File script = new File("harry_potter");
+			File script = new File("harry_potter.txt");
 			Scanner s = new Scanner(script);
 			System.out.println("file is open");
 			
