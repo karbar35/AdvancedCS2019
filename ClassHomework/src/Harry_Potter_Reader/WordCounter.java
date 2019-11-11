@@ -8,6 +8,7 @@ public class WordCounter {
 	static HashMap<String, Integer> wordCount = new HashMap<String, Integer>();
 	
 	public static void main(String[] args) {
+		long start = System.currentTimeMillis();
 		try {
 			
 			File script = new File("harry_potter.txt");
@@ -27,7 +28,8 @@ public class WordCounter {
 			System.out.println("error opening the file");
 		}
 		
-		
+		long end = System.currentTimeMillis();
+		System.out.println(end-start);
 	}
 	
 	public static void addToCount(String word) {
