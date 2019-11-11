@@ -27,6 +27,7 @@ public class WordCounter {
 			System.out.println("error opening the file");
 		}
 		
+		
 	}
 	
 	public static void addToCount(String word) {
