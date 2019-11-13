@@ -9,11 +9,13 @@ public class Card {
 
 	private String rank;
 	private String suit;
-	private boolean face;
+	private int pointValue;
 	
-	public Card(String rank, String suit) {
+	public Card(String rank, String suit, int point) {
 		this.rank = rank;
 		this.suit = suit;
+		this.pointValue = point;
+
 	}
 	public String getRank() {
 		return rank;
@@ -23,8 +25,9 @@ public class Card {
 		return suit;
 	}
 	
-	public boolean isFace() {
-		return face;
+	
+	public int getPointValue() {
+		return pointValue;
 	}
 	
 	public boolean equalsCard(Card c) {
@@ -32,5 +35,9 @@ public class Card {
 			return true;
 		}
 		return false;
+	}
+	
+	public String toString() {
+		return rank + " of " + suit + " (point value = " + pointValue + ")";
 	}
 }
