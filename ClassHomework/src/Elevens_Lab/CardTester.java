@@ -17,9 +17,18 @@ public class CardTester {
 		System.out.println(c1);
 		System.out.println(c2);
 		System.out.println(c3);
+		
 		System.out.println(c1.getSuit());
+		System.out.println(c2.getSuit());
+		System.out.println(c3.getSuit());
+
 		System.out.println(c1.getRank());
+		System.out.println(c2.getRank());
+		System.out.println(c3.getRank());
+
 		System.out.println(c1.getPointValue());
+		System.out.println(c2.getPointValue());
+		System.out.println(c3.getPointValue());
 
 
 	}

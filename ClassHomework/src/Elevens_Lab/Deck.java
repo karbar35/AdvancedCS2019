@@ -8,11 +8,12 @@ public class Deck {
 	
 	public Deck(String[] ranks, String[] suits, int[] pointValues) {
 		for(String suit : suits) {
-			for(int i = 0; i < ranks.length; i++) {
+			for(int i = 0; i < suits.length; i++) {
 				cards.add(new Card(ranks[i], suit, pointValues[i]));
 			}
 		}
 		size = cards.size();
+		/// shuffle class not implemented until later exercise
 		//this.shuffle();
 	}
 	
