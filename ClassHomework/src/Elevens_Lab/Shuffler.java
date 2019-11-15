@@ -1,5 +1,8 @@
 package Elevens_Lab;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * This class provides a convenient way to test shuffling methods.
  */
@@ -9,7 +12,7 @@ public class Shuffler {
 	 * The number of consecutive shuffle steps to be performed in each call
 	 * to each sorting procedure.
 	 */
-	private static final int SHUFFLE_COUNT = 1;
+	private static final int SHUFFLE_COUNT = 11;
 
 
 	/**
@@ -19,7 +22,7 @@ public class Shuffler {
 	public static void main(String[] args) {
 		System.out.println("Results of " + SHUFFLE_COUNT +
 								 " consecutive perfect shuffles:");
-		int[] values1 = {0, 1, 2, 3, 4, 5};
+		int[] values1 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
 			perfectShuffle(values1);
 			System.out.print("  " + j + ":");
@@ -32,7 +35,7 @@ public class Shuffler {
 
 		System.out.println("Results of " + SHUFFLE_COUNT +
 								 " consecutive efficient selection shuffles:");
-		int[] values2 = {0, 1, 2, 3};
+		int[] values2 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
 			selectionShuffle(values2);
 			System.out.print("  " + j + ":");
@@ -82,5 +85,28 @@ public class Shuffler {
 	 */
 	public static void selectionShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		for(int k = values.length-1; k >= 0; k--) {
+			int r = (int) Math.random()*k+1;
+			int temp = values[k];
+			values[k] = values[r];
+			values[r] = temp;
+		}
+	}
+	
+	public static String flip() {
+		int chance = (int) Math.random() * 3;
+		if(chance == 0) {
+			return "tails";
+		} else {
+			return "heads";
+		}
+	}
+	
+	public static boolean arePermutations(int[] arr1, int[]arr2) {
+		List checkList = Arrays.asList(arr2);
+		for(int e : arr1) {
+			if (!checkList.contains(e)) return false;
+		}
+		return true;
 	}
 }

@@ -13,8 +13,9 @@ public class Deck {
 			}
 		}
 		size = cards.size();
-		/// shuffle class not implemented until later exercise
-		//this.shuffle();
+		/// shuffle 
+		
+		this.shuffle();
 	}
 	
 	public boolean isEmpty() {
@@ -27,6 +28,8 @@ public class Deck {
 	
 	public void shuffle() {
 		// shuffle code
+		Shuffler shuffler = new Shuffler();
+		
 		size = cards.size();
 	}
 	
