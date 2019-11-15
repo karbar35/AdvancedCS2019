@@ -19,7 +19,7 @@ public class Deck {
 	}
 	
 	public boolean isEmpty() {
-		return cards.size() == 0;
+		return size == 0;
 	}
 	
 	public int size() {
@@ -29,13 +29,46 @@ public class Deck {
 	public void shuffle() {
 		// shuffle code
 		Shuffler shuffler = new Shuffler();
-		
+		shuffler.selectionShuffle(this.cards);
 		size = cards.size();
 	}
 	
 	public Card deal() {
+		if(size <= 0) return null;
 		size--;
-		if(size < 0) return null;
 		return cards.get(size);
 	}
+	@Override
+	public String toString() {
+		String rtn = "size = " + size + "\nUndealt cards: \n";
+		if(size != 0) {
+		for (int k = size - 1; k >= 0; k--) {
+			rtn = rtn + cards.get(k);
+			if (k != 0) {
+				rtn = rtn + ", ";
+			}
+			if ((size - k) % 2 == 0) {
+				// Insert carriage returns so entire deck is visible on console.
+				rtn = rtn + "\n";
+			}
+		}
+		}
+
+		rtn = rtn + "\nDealt cards: \n";
+		for (int k = cards.size() - 1; k >= size; k--) {
+			rtn = rtn + cards.get(k);
+			if (k != size) {
+				rtn = rtn + ", ";
+			}
+			if ((k - cards.size()) % 2 == 0) {
+				// Insert carriage returns so entire deck is visible on console.
+				rtn = rtn + "\n";
+			}
+		}
+
+		rtn = rtn + "\n";
+		return rtn;
+	}
 }
+
+
