@@ -1,5 +1,6 @@
 package Elevens_Lab;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class Shuffler {
 								 " consecutive efficient selection shuffles:");
 		int[] values2 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
-			selectionShuffle(values2);
+		//	selectionShuffle(values2);
 			System.out.print("  " + j + ":");
 			for (int k = 0; k < values2.length; k++) {
 				System.out.print(" " + values2[k]);
@@ -83,13 +84,13 @@ public class Shuffler {
 	 * searching for an as-yet-unselected card.
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
-	public static void selectionShuffle(int[] values) {
+	public static void selectionShuffle(ArrayList<Card> cards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
-		for(int k = values.length-1; k >= 0; k--) {
+		for(int k = cards.size()-1; k >= 0; k--) {
 			int r = (int) Math.random()*k+1;
-			int temp = values[k];
-			values[k] = values[r];
-			values[r] = temp;
+			Card temp = cards.get(k);
+			cards.set(k, cards.get(r));
+			cards.set(r, temp);
 		}
 	}
 	
