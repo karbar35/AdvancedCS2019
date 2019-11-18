@@ -23,7 +23,7 @@ public class AmicableNumbers {
 		for(int i = 2; i <= Math.pow(10,6); i++) {
 
 			int y = allFactors(i);
-			if((i == allFactors(y)) && !checked.contains(i) && i != y) {
+			if((i == allFactors(y)) && !checked.contains(i) && i != y && checked.contains(y)) {
 				System.out.println(i + " : " + y);
 			}
 			checked.add(i);
