@@ -2,18 +2,18 @@ package AmNums;
 import java.util.ArrayList;
 
 public class AmicableNumbers {
-	public static int allFactors(int a) {
+	public static int allFactors(int input) {
 		int sum = 0;
-		for(int i = 1; i <= Math.sqrt(a); i++) {
-			if((a % i == 0)) {
-				sum += i;
-				if (i != a / i) {
-	                sum += (a / i);
+		for(int num = 1; num <= Math.sqrt(input); num++) {
+			if((input % num == 0)) {
+				sum += num;
+				if (num != input / num) {
+	                sum += (input / num);
 	            }
 			}
 
 		}
-		return sum-a;
+		return sum-input;
 	}
 
 	public static void main(String[] args) {		
