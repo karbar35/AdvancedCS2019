@@ -20,5 +20,9 @@ public class Haiku extends Poem{
 		}
 		return -1;
 	}
+	
+	public boolean simulate() {
+		return numLines() == 3;
+	}
 
 }
