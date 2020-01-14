@@ -3,7 +3,7 @@ import java.util.NoSuchElementException;
 
 public class Deque<Item> implements Iterable<Item> {
 	
-	private Node head, tail;
+	private final Node head, tail;
     private int size = 0;
 	
 	private class Node {
@@ -38,14 +38,12 @@ public class Deque<Item> implements Iterable<Item> {
     	n.item = item;
     	
     	Node oldFirst = head.next;
-    	n.next = oldFirst;
     	head.next = n;
+    	n.next = oldFirst;
     	oldFirst.prev = n;
     	n.prev = head;
     	
-    	if (size < 0) {
-    		System.out.println("something's wrong: negative size");
-    	}
+    	
     	
     	size++;
     }
@@ -63,11 +61,10 @@ public class Deque<Item> implements Iterable<Item> {
     	tail.prev = n;
     	n.prev = oldLast;
     	
-    	if (size < 0) {
-    		System.out.println("something's wrong: negative size");
-    	}
+    	
     	
     	size++;
+
     }
 
     // remove and return the item from the front
@@ -77,7 +74,10 @@ public class Deque<Item> implements Iterable<Item> {
     		head.next = returnable.next;
     		returnable.next.prev = head;
     		size--;
+
     		return returnable.item;
+    		
+
     }
 
     // remove and return the item from the back
@@ -87,6 +87,7 @@ public class Deque<Item> implements Iterable<Item> {
     		tail.prev = returnable.prev;
     		returnable.prev.next = tail;
     		size--;
+
     		return returnable.item;
     }
 
@@ -116,24 +117,50 @@ public class Deque<Item> implements Iterable<Item> {
     }
     
     // unit testing (required)
-    public static void main(String[] args) {
+	public static void main(String[] args) {
     	Deque<Integer> testDeck = new Deque<Integer>();
-    	System.out.println(testDeck.isEmpty());
-    	System.out.println(testDeck.size());
+    	System.out.println("empty: " + testDeck.isEmpty());
+    	System.out.println("size: " + testDeck.size());
     	
     	testDeck.addFirst(1);
     	testDeck.addFirst(7);
     	testDeck.addLast(3);
-    	
-    	System.out.println(testDeck.isEmpty());
-    	System.out.println(testDeck.size());
+    	Iterator<Integer> l1 = testDeck.iterator();
+    	while (l1.hasNext()) {
+    		System.out.print(l1.next() + ", ");
+    	}
+    	System.out.println("done");
+
+    	System.out.println("empty: " + testDeck.isEmpty());
+    	System.out.println("size: " + testDeck.size());
 
     	System.out.println(testDeck.removeFirst());
     	System.out.println(testDeck.removeLast());
 
-    	System.out.println(testDeck.isEmpty());
-    	System.out.println(testDeck.size());
-
+    	System.out.println("empty: " + testDeck.isEmpty());
+    	System.out.println("size: " + testDeck.size());
+    	
+    	
+    	
+    
+    	testDeck.addFirst(2);
+    	testDeck.addFirst(4);
+    	testDeck.addLast(6);
+    	Iterator<Integer> l2 = testDeck.iterator();
+    	while (l2.hasNext()) {
+    		System.out.print(l2.next() + ", ");
+    	}
+    	System.out.println("done");
+    	
+    	testDeck.addFirst(8);
+    	testDeck.addFirst(9);
+    	testDeck.addLast(10);
+    	
+    	Iterator<Integer> l3 = testDeck.iterator();
+    	while (l3.hasNext()) {
+    		System.out.print(l3.next() + ", ");
+    	}
+    	System.out.println("done");
     }
 
 }
