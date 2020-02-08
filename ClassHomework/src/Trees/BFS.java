@@ -1,9 +1,5 @@
 package Trees;
 
-import Trees.Vertex;
-import Trees.Edge;
-import Trees.Graph;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
