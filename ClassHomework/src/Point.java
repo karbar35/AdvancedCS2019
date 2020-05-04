@@ -61,13 +61,15 @@ public class Point implements Comparable<Point> {
 	 */
 	public double slopeTo(Point that) {
 		/* YOUR CODE HERE */
-		if(this.y == that.y && this.x != that.x) return 0;
+		if (this.y == that.y && this.x != that.x)
+			return 0;
 		if (this.x == that.x && this.y == that.y)
 			return Double.NEGATIVE_INFINITY;
 		else if (this.x == that.x && this.y != that.y)
 			return Double.POSITIVE_INFINITY;
-		else if (this.y == that.y) return 0;
-		return ((double)this.y - (double)that.y) / ((double)this.x - (double)that.x);
+		else if (this.y == that.y)
+			return 0;
+		return ((double) this.y - (double) that.y) / ((double) this.x - (double) that.x);
 	}
 
 	/**
@@ -87,7 +89,7 @@ public class Point implements Comparable<Point> {
 			return -1;
 		} else if (this.y == that.y && this.x < that.x) {
 			return -1;
-		} else if(this.y == that.y && this.x == that.x){
+		} else if (this.y == that.y && this.x == that.x) {
 			return 0;
 		} else {
 			return 1;
@@ -107,11 +109,11 @@ public class Point implements Comparable<Point> {
 
 	private class SlopeComparator implements Comparator<Point> {
 		Point invoking;
-		
+
 		public SlopeComparator(Point p) {
 			invoking = p;
 		}
-		
+
 		public int compare(Point p1, Point p2) {
 			if (invoking.slopeTo(p1) < invoking.slopeTo(p2))
 				return -1;
@@ -120,7 +122,7 @@ public class Point implements Comparable<Point> {
 			else
 				return 1;
 		}
-		
+
 		public boolean equals(Point p) {
 			if (invoking.x == p.x && invoking.y == p.y)
 				return true;
@@ -140,10 +142,88 @@ public class Point implements Comparable<Point> {
 		return "(" + x + ", " + y + ")";
 	}
 
+	public static double methodA(double arg) {
+		return arg + 1.5;
+	}
+
+	public static void adjust(double max, double min, double total, double n) {
+		total = total - max - min;
+		n = n - 2.0;
+		System.out.println(total / n);
+	}
+
 	/**
 	 * Unit tests the Point data type.
 	 */
+
+	public static String reverseString(String str) {
+
+		String result = "";
+
+		for(int i = str.length()-1; i >= 0; i--) {
+
+		result = result + str.substring(i, i +1);
+
+		}
+
+		return result;
+
+		}
+	
+	public static void longestStreak(String str) {
+
+        int longStreak = 0;
+
+        char longStreakChar = str.charAt(0);
+
+        int streak = 0;
+
+        char streakChar = str.charAt(0);
+
+        for(int i = 0; i < str.length(); i++) {
+
+                if(str.charAt(i) == streakChar) streak++;
+
+                else {
+
+                        if(streak > longStreak) {
+
+                               longStreak = streak;
+
+                               longStreakChar = streakChar;
+
+                       }
+
+                       streakChar = str.charAt(i);
+
+                       streak = 0;
+
+                        
+
+                }
+
+        }   
+        System.out.println(longStreak);
+        System.out.println(longStreakChar);
+
+
+}
+
+ 
+
+	
 	public static void main(String[] args) {
 		/* YOUR CODE HERE */
+		String str = "1100000111";
+		String segment = "00";
+		String newSeq;
+		
+		double sum = 0.0;
+		int a = 5;
+		int b = 7;
+		int[] n = new int[4];
+		System.out.println(n[2]);
+		
+		
 	}
 }
